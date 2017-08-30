@@ -24,7 +24,16 @@
 
 package de.felix_klauke.exorbia.core
 
+import de.felix_klauke.exorbia.core.bucket.IBucket
+
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-class ExorbiaCoreImpl : IExorbiaCore
+class ExorbiaCoreImpl : IExorbiaCore {
+
+    private var buckets : Map<String, IBucket> = HashMap()
+
+    override fun openBucket(name: String): IBucket {
+        return buckets.getValue(name);
+    }
+}

@@ -24,7 +24,12 @@
 
 package de.felix_klauke.exorbia.core
 
+import de.felix_klauke.exorbia.core.bucket.IBucket
+
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-interface IExorbiaCore
+interface IExorbiaCore {
+
+    fun openBucket(name : String): IBucket
+}
