@@ -29,7 +29,13 @@ import org.json.JSONObject
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-class JsonDocument : IDocument<JSONObject> {
+class JsonDocument(val identifier: String) : IDocument<JSONObject> {
+
+    companion object Factory {
+
+        fun create(identifier: String): IDocument<JSONObject> = JsonDocument(identifier)
+    }
+
     override fun content(): JSONObject {
         return JSONObject()
     }

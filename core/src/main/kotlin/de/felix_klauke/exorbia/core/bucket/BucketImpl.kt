@@ -29,11 +29,17 @@ import de.felix_klauke.exorbia.core.document.IDocument
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-interface IBucket {
+class BucketImpl : IBucket {
 
-    fun <ContentType> getDocument(identifier: String): IDocument<ContentType>
+    override fun <ContentType> getDocument(identifier: String): IDocument<ContentType> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    fun <ContentType> saveDocument(document: IDocument<ContentType>)
+    override fun <ContentType> saveDocument(document: IDocument<ContentType>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    fun deleteDocument(identifier: String)
+    override fun deleteDocument(identifier: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
