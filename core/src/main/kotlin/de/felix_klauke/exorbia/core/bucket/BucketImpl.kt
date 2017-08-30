@@ -24,19 +24,44 @@
 
 package de.felix_klauke.exorbia.core.bucket
 
+import de.felix_klauke.exorbia.core.document.AbstractDocument
 import de.felix_klauke.exorbia.core.document.IDocument
+import de.felix_klauke.exorbia.core.document.JsonDocument
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.ObjectOutputStream
+import java.util.*
 
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
 class BucketImpl : IBucket {
 
-    override fun <ContentType> getDocument(identifier: String): IDocument<ContentType> {
+    override fun getDocument(identifier: String): JsonDocument {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun <ContentType> saveDocument(document: IDocument<ContentType>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val documentId = document.id()
+
+        val byteOutput = ByteArrayOutputStream()
+        val outPutStream: ObjectOutputStream = ObjectOutputStream(byteOutput)
+
+        if (document is AbstractDocument) {
+            document.writeToSerializedStream(outPutStream)
+        }
+
+        val file: File = File("test.db")
+        file.createNewFile()
+
+        val output: FileOutputStream = FileOutputStream(file)
+        byteOutput.writeTo(output)
+
+        println(Arrays.toString(byteOutput.toByteArray()))
+
+        byteOutput.close()
+        outPutStream.close()
     }
 
     override fun deleteDocument(identifier: String) {

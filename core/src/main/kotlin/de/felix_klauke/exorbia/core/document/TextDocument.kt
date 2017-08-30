@@ -27,7 +27,7 @@ package de.felix_klauke.exorbia.core.document
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-class TextDocument : IDocument<String> {
+class TextDocument(id: String, content: String, expiry: Long) : AbstractDocument<String>(id, content, expiry) {
     override fun content(): String {
         return ""
     }

@@ -32,4 +32,6 @@ interface IDocument<ContentType> {
     fun content(): ContentType
 
     fun expiry(): Long
+
+    fun id(): String
 }

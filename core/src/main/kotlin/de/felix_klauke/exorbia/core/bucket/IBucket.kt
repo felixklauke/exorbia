@@ -25,13 +25,14 @@
 package de.felix_klauke.exorbia.core.bucket
 
 import de.felix_klauke.exorbia.core.document.IDocument
+import de.felix_klauke.exorbia.core.document.JsonDocument
 
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
 interface IBucket {
 
-    fun <ContentType> getDocument(identifier: String): IDocument<ContentType>
+    fun getDocument(identifier: String): JsonDocument
 
     fun <ContentType> saveDocument(document: IDocument<ContentType>)
 

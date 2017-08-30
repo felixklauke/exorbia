@@ -24,17 +24,38 @@
 
 package de.felix_klauke.exorbia.core.document
 
-import org.json.JSONObject
+import java.io.IOException
+import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
 /**
- * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
+ * @author Felix 'SasukeKawaii' Klauke <sasukekawaii></sasukekawaii>@ungespielt.net>
  */
-class JsonDocument(id: String, content: JSONObject, expiry: Long) : AbstractDocument<JSONObject>(id, content, expiry) {
+open class AbstractDocument<ContentType>(private var id: String, private var content: ContentType, private var expiry: Long) : IDocument<ContentType> {
 
-    override fun writeToSerializedStream(stream: ObjectOutputStream) {
-        stream.writeLong(expiry())
-        stream.writeUTF(id())
-        stream.writeObject(content().toMap())
+    override fun id(): String {
+        return id
+    }
+
+    override fun content(): ContentType {
+        return content
+    }
+
+    override fun expiry(): Long {
+        return expiry
+    }
+
+    @Throws(IOException::class)
+    open fun writeToSerializedStream(stream: ObjectOutputStream) {
+        stream.writeLong(expiry)
+        stream.writeUTF(id)
+        stream.writeObject(content)
+    }
+
+    @Throws(IOException::class, ClassNotFoundException::class)
+    open fun readFromSerializedStream(stream: ObjectInputStream) {
+        expiry = stream.readLong()
+        id = stream.readUTF()
+        content = stream.readObject() as ContentType
     }
 }
