@@ -34,7 +34,10 @@ import org.json.JSONObject
 fun main(args: Array<String>) {
     val bucket: IBucket = BucketImpl()
 
-    val document: IDocument<JSONObject> = JsonDocument("TEstIID", JSONObject().put("Ichbingott", "Götterhaoin"), -1)
+    val document: IDocument<JSONObject> = JsonDocument("TEstIID", JSONObject()
+            .put("Ichbingott", "Götterhaoin")
+            .put("Das probierrt man aus", JSONObject().put("Das ist", "der ngeh+jag"))
+            , -1)
 
     bucket.saveDocument(document)
 

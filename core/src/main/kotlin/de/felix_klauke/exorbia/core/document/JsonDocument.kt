@@ -35,6 +35,6 @@ class JsonDocument(id: String, content: JSONObject, expiry: Long) : AbstractDocu
     override fun writeToSerializedStream(stream: ObjectOutputStream) {
         stream.writeLong(expiry())
         stream.writeUTF(id())
-        stream.writeObject(content().toMap())
+        stream.writeObject(content().toString())
     }
 }

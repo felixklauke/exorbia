@@ -29,8 +29,8 @@ import de.felix_klauke.exorbia.core.document.IDocument
 import de.felix_klauke.exorbia.core.document.JsonDocument
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileOutputStream
 import java.io.ObjectOutputStream
+import java.nio.file.Files
 import java.util.*
 
 /**
@@ -55,8 +55,7 @@ class BucketImpl : IBucket {
         val file: File = File("test.db")
         file.createNewFile()
 
-        val output: FileOutputStream = FileOutputStream(file)
-        byteOutput.writeTo(output)
+        Files.write(file.toPath(), byteOutput.toByteArray())
 
         println(Arrays.toString(byteOutput.toByteArray()))
 
