@@ -24,13 +24,14 @@
 
 package de.felix_klauke.exorbia.core.document
 
+import de.felix_klauke.exorbia.core.json.StorableJSONObjectAdapter
 import org.json.JSONObject
 import java.io.ObjectOutputStream
 
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-class JsonDocument(id: String, content: JSONObject, expiry: Long) : AbstractDocument<JSONObject>(id, content, expiry) {
+class JsonDocument(id: String, content: JSONObject, expiry: Long) : AbstractDocument<JSONObject>(id, StorableJSONObjectAdapter(content), expiry) {
 
     override fun writeToSerializedStream(stream: ObjectOutputStream) {
         stream.writeLong(expiry())
