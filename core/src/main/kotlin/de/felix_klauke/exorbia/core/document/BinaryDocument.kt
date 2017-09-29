@@ -29,13 +29,13 @@ import de.felix_klauke.exorbia.core.buffer.ExByteBuffer
 /**
  * @author Felix 'SasukeKawaii' Klauke <sasukekawaii@ungespielt.net>
  */
-class BinaryDocument(id: String, content: ExByteBuffer, expiry: Long) : AbstractDocument<ExByteBuffer>(id, content, expiry) {
+class BinaryDocument(id: String, content: ExByteBuffer, private val expiry: Long) : AbstractDocument<ExByteBuffer>(id, content, expiry) {
 
     override fun content(): ExByteBuffer {
         return ExByteBuffer()
     }
 
     override fun expiry(): Long {
-        return 0
+        return expiry
     }
 }
